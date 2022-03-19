@@ -35,7 +35,7 @@ const init_phones = ["B2"],                      // Optional. Which graphs to di
 const targets = [
     { type:"Neutral",    files:["Diffuse Field","Etymotic","Free Field","Innerfidelity ID"] },
     { type:"Reviewer",   files:["Antdroid","Bad Guy","Banbeucmas","Crinacle","Precogvision","Super Review"] },
-    { type:"Preference", files:["Harman","Rtings","Sonarworks","hibikist"] }
+    { type:"Preference", files:["Harman","Rtings","Sonarworks"] }
 ];
 
 
