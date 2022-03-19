@@ -12,6 +12,12 @@
     ]
   },
   {
+    "name": "BLON",
+    "phones": [
+        {"name":"BL-03","file":"BL03"}
+    ]
+  },
+  {
     "name":   "QBK",
     "phones": [ "FQQ"
               , "Q53"
