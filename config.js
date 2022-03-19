@@ -14,7 +14,7 @@ const init_phones = ["B2"],                      // Optional. Which graphs to di
       alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
       site_url = 'graph.html',                      // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
-      watermark_text = "",                 // Optional. Watermark appears behind graphs
+      watermark_text = "hibikist.github.io",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "rinkochan.svg",   // Optional. If image file is in same directory as config, can be just the filename
       page_title = "hibikist with a coupler",                     // Optional. Appended to the page title if share URLs are enabled
       page_description = "View and compare frequency response graphs for earphones",
@@ -52,12 +52,12 @@ function watermark(svg) {
     
     if ( watermark_image_url ) {
         wm.append("image")
-            .attrs({x:-64, y:-64, width:2400, height:1038, "xlink:href":watermark_image_url});
+            .attrs({x:-500, y:-215, width:1000, height:430, "xlink:href":watermark_image_url});
     }
     
     if ( watermark_text ) {
         wm.append("text")
-            .attrs({x:0, y:70, "font-size":28, "text-anchor":"middle", "class":"graph-name"})
+            .attrs({x:0, y:140, "font-size":16, "text-anchor":"middle", "class":"graph-name"})
             .text(watermark_text);
     }
 }
