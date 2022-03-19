@@ -6,6 +6,12 @@
     ]
   },
   {
+    "name": "Moondrop",
+    "phones": [
+        {"name":"Blessing 2","file":"B2"}
+    ]
+  },
+  {
     "name":   "QBK",
     "phones": [ "FQQ"
               , "Q53"
