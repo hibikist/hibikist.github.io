@@ -46,6 +46,7 @@
     "name": "Tanchjim",
     "phones": [
         {"name":"Ola","file":"OLA"}
+      , {"name":"Tanya", "file":"Tanya"}
     ]
   }
 ]
