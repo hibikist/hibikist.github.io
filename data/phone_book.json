@@ -35,5 +35,17 @@
         {"name":"Monarch Mk1","file":"monarch1"}
       , {"name":"Monarch Mk2","file":"monarch2"}
     ]
+  },
+  {
+    "name": "TRI",
+    "phones": [
+        {"name":["Starsea"],"file":["starseaP","starseaB","starseaBL","starseaV"],"suffix":["Pure","Bass","Balanced","Vocal"]}
+    ]
+  },
+  {
+    "name": "Tanchjim",
+    "phones": [
+        {"name":"Ola","file":"OLA"}
+    ]
   }
 ]
