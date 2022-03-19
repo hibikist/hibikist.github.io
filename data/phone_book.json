@@ -28,5 +28,12 @@
     "phones": [
         {"name":"OH900","file":"OH900"}
     ]
+  },
+  {
+    "name": "ThieAudio",
+    "phones": [
+        {"name":"Monarch Mk1","file":"monarch1"}
+      , {"name":"Monarch Mk2","file":"monarch2"}
+    ]
   }
 ]
