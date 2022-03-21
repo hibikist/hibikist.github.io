@@ -54,6 +54,7 @@
     "name": "KZ",
     "phones": [
         {"name":"S2","file":"S2"}
+      , {"name":["DQ6"],"file":["DQ6","DQ6T"],"suffix":["(Stock)","(Tanchjim Filter)"]}
     ]
   }
 ]
