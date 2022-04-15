@@ -4,6 +4,7 @@
     "phones": [
         {"name":["Blessing 2"],"file":["B2","B2F","B2G330","B2W","B2G","B2R","B2Y"],"suffix":["Stock, Brown Filter 1000Ω","Filterless","Gray Filter 330Ω","White Filter 680Ω","Green Filter 1500Ω","Red Filter 2200Ω","Yellow Filter 4700Ω"]}
       , {"name":"KXXS","file":"KXXS"}
+      , {"name":"Chu","file":"Chu"}
     ]
   },
   {
