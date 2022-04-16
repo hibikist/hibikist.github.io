@@ -1,4 +1,38 @@
-# The In-Ear Graphing Library
+# Rohsa Graph Tool (CrinGraph)
+
+My graph tool based on CrinGraph.
+
+Modifications:
+
+- Remove " from "IEF \"Harman\" Target.txt", allow windows to checkout this repository
+- Provide universal csv/tsv parser, remove data_format option
+- Do not invert header and watermark in dark mode
+- Open header links on new tab
+- Interpolate frequence responses to 1/48 octave, allow difference resolution files
+- Fix label display for show/hide graphs
+- Add extra features
+    - Allow uploading frequence response file and target file
+    - Parametric equalizer
+        - Support generating EQ filters to selected target or other model automatically
+        - Support exporting parametric eq file for DSP software like Peace
+        - Support exporting graphic eq file for DSP software like Wavelet
+    - Tone generator
+- Change default options in config.js
+    - alt_layout: true
+    - labelsPosition: "bottom-right"
+    - stickyLabels: true
+
+How to use this repository for your own project:
+
+- Remove data_rohsa
+- Remove config_rohsa.js
+- Remove index.html
+- Modify config.js
+- Modify graph.html and rename it to index.html if necessary
+
+------------------------------------------------------------------
+
+## The In-Ear Graphing Library
 
 If you're not weirdly obsessed with headphones you can leave at any time.
 
