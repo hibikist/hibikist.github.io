@@ -70,7 +70,8 @@
         {"name":"Yume: Midnight","file":"Midnight"}
     ]
   },
-    "name": "Sony",
+  {
+   "name": "Sony",
     "phones": [
         {"name":"MDR-EX15LP","file":"EX15"}
     ]
