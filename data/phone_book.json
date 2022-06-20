@@ -75,11 +75,11 @@
     "phones": [
         {"name":"MDR-EX15LP","file":"EX15"}
     ]
-  }
+  },
   {  
     "name": "CCA",
     "phones": [
         {"name":"CRA+","file":"CRAP"}
     ]
-  },
+  }
 ]
