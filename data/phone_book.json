@@ -108,5 +108,17 @@
     "phones": [
        {"name":"Helios","file":"Helios"}
     ]
+  },
+  {
+    "name": "LETSHUOER",
+    "phones": [
+       {"name":"S12","file":"S12"}
+    ]
+  },
+  {
+    "name": "Jabra",
+    "phones": [
+       {"name":"Elite Active 75t","file":"75t"}
+    ]
   }
 ]
