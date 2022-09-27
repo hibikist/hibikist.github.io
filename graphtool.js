@@ -148,8 +148,8 @@ doc.html(`
               <div class="filters-header">
                 <span>Type</span>
                 <span>Frequency</span>
-                <span>Q</span>
                 <span>Gain</span>
+                <span>Q</span>
               </div>
               <div class="filters">
                 <div class="filter">
@@ -162,8 +162,8 @@ doc.html(`
                       </select>
                     </span>
                     <span><input name="freq" type="number" min="20" max="20000" step="1" value="0"></input></span>
-                    <span><input name="q" type="number" min="0" max="10" step="0.1" value="0"></input></span>
                     <span><input name="gain" type="number" min="-40" max="40" step="0.1" value="0"></input></span>
+                    <span><input name="q" type="number" min="0" max="10" step="0.1" value="0"></input></span>
                 </div>
               </div>
               <div class="settings-row">
@@ -179,7 +179,7 @@ doc.html(`
                 <button class="export-filters">Export</button>
                 <button class="autoeq">AutoEQ</button>
                 <button class="export-graphic-filters">Export Graphic EQ (For Wavelet)</button>
-                <button class="readme">Readme</button>
+                <button class="readme">Guide</button>
               </div>
               <a style="display: none" id="file-filters-export"></a>
               <form style="display:none"><input type="file" id="file-filters-import" accept=".txt" /></form>
@@ -1442,7 +1442,16 @@ let f_values = (function() {
     // Standard frequencies, all phone need to interpolate to this
     let f = [20];
     let step = Math.pow(2, 1/48); // 1/48 octave
-    while (f[f.length-1] < 20000) { f.push(f[f.length-1] * step) }
+    while (f[f.length-1] < 20000) {
+        let value = Math.round(f[f.length-1] * step * 10) / 10;
+        if (value >= 1000) {
+            value = Math.round(value / 10) * 10;
+        } else if (value >= 100) {
+            value = Math.round(value);
+        }
+        f.push(value);
+    }
+    f[f.length-1] = 20000;
     return f;
 })();
 let fr_to_ind = fr => d3.bisect(f_values, fr, 0, f_values.length-1);
@@ -1457,8 +1466,9 @@ let norm_sel = ( default_normalization.toLowerCase() === "db" ) ? 0:1,
 
 function normalizePhone(p) {
     if (norm_sel) { // fr
+        let i = fr_to_ind(norm_fr);
         let avg = l => 20*Math.log10(d3.mean(l, d=>Math.pow(10,d/20)));
-        p.norm = 60 - avg(validChannels(p).map(l=> l[fr_to_ind(norm_fr)][1]));
+        p.norm = 60 - avg(validChannels(p).map(l=>l[i][1]));
     } else { // phon
         p.norm = find_offset(getAvg(p), norm_phon);
     }
@@ -1538,6 +1548,8 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
         });
         return;
     }
+    // Show phone even it's hidden previously
+    p.hide = false;
     smoothPhone(p);
     if (p.id === undefined) { p.id = getPhoneNumber(); }
     normalizePhone(p); p.offset=p.offset||0;
@@ -2296,7 +2308,7 @@ function addExtra() {
             let name = file.name.replace(/\.[^\.]+$/, "");
             let phone = { name: name };
             let ch = [tsvParse(e.target.result)];
-            if (ch[0].length < 128) {
+            if (ch[0].length < 32) {
                 alert("Parse frequence response file failed: invalid format.");
                 return;
             }
@@ -2468,7 +2480,7 @@ function addExtra() {
         reader.onload = (e) => {
             let settings = e.target.result;
             let filters = settings.split("\n").map(l => {
-                let r = l.match(/Filter\s*\d+:\s*(\S+)\s*(\S+)\s*Fc\s*(\S+)\s*Hz\s*Gain\s*(\S+)\s*dB(\s*Q\s*(\S+))?/);
+                let r = l.match(/Filter\s*\d*:\s*(\S+)\s*(\S+)\s*Fc\s*(\S+)\s*Hz\s*Gain\s*(\S+)\s*dB(\s*Q\s*(\S+))?/);
                 if (!r) { return undefined; }
                 let disabled = (r[1] !== "ON");
                 let type = r[2];
@@ -2477,7 +2489,10 @@ function addExtra() {
                 let q = parseFloat(r[6]) || 0;
                 if (type === "LS" || type === "HS") {
                     type += "Q";
-                    q = 0.707;
+                    q = q || 0.707;
+                } else if (type === "LSC" || type === "HSC") {
+                    // Equalizer APO use LSC/HSC instead of LSQ/HSQ
+                    type = type.substr(0, 2) + "Q";
                 }
                 return { disabled, type, freq, q, gain };
             }).filter(f => f);
@@ -2515,7 +2530,12 @@ function addExtra() {
         let settings = "Preamp: " + preamp.toFixed(1) + " dB\r\n";
         filters.forEach((f, i) => {
             let on = (!f.disabled && f.type && f.freq && f.gain && f.q) ? "ON" : "OFF";
-            settings += ("Filter " + (i+1) + ": " + on + " " + f.type + " Fc " +
+            let type = f.type;
+            if (type === "LSQ" || type === "HSQ") {
+                // Equalizer APO use LSC/HSC instead of LSQ/HSQ
+                type = type.substr(0, 2) + "C";
+            }
+            settings += ("Filter " + (i+1) + ": " + on + " " + type + " Fc " +
                 f.freq.toFixed(0) + " Hz Gain " + f.gain.toFixed(1) + " dB Q " +
                 f.q.toFixed(3) + "\r\n");
         });
@@ -2546,11 +2566,11 @@ function addExtra() {
     });
     // Readme
     document.querySelector("div.extra-eq button.readme").addEventListener("click", () => {
-        alert("1. If you want to AutoEQ model A to B, display A B and remove target\n" +
-            "2. Add/Remove bands before AutoEQ may give you a better result\n" +
-            "3. Curve of PK filter close to 20K is implementation dependent, avoid such filter if you're not sure how your DSP software works\n" +
-            "4. EQ treble require resonant peak matching and fine tune by ear, keep treble untouched if you're not sure how to do that\n" +
-            "5. Tone generator is useful to find actual location of peaks and dips, notice the web version may not work on some platform\n");
+        alert("1. If you want to AutoEQ model A to B, display A B and remove targets.\n" +
+            "2. Adding/Removing bands before AutoEQ may give you a better results.\n" +
+            "3. Using PK filters close to 20kHz is finnicky; avoid touching frequencies beyond 15kHz if you're not sure how your DSP software works.\n" +
+            "4. EQing treble frequencies require resonant peak matching and fine-tuning by ear. Keep the treble regions untouched if you're new to EQing.\n" +
+            "5. Use the Tone Generator to find the actual location of peaks and dips to your own ears. Do note that the web version may not work on some platforms.\n");
     });
     // AutoEQ
     let autoEQFromInput = document.querySelector("div.extra-eq input[name='autoeq-from']");
