@@ -94,7 +94,8 @@
   {
     "name": "Truthear",
     "phones": [
-       {"name":"x crinacle: Zero","file":"TE0"}
+       {"name":"x crinacle: ZERO","file":"TE0"}
+      ,{"name":["HEXA"],["file";"hexa","hexa s2"],"suffix":["(Sample 1)","(Sample 2)"]}
     ]
   },
   {
@@ -119,6 +120,11 @@
     "name": "Jabra",
     "phones": [
        {"name":"Elite Active 75t","file":"75t"}
+    ]
+  },
+    "name": "7th Acoustic",
+    "phones": [
+       {"name":"Stargazer 3","file":"stargazer"}
     ]
   }
 ]
