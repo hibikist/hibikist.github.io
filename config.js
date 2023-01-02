@@ -1,5 +1,5 @@
 // Configuration options
-const init_phones = ["Chu Mod","Hibikist Target"],                      // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
+const init_phones = ["stargazer","Hibikist 2022 Target"],                      // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
       DIR = "data/",                                // Directory where graph files are stored
       default_channels = ["L","R"],                 // Which channels to display. Avoid javascript errors if loading just one channel per phone
       default_normalization = "dB",                 // Sets default graph normalization mode. Accepts "dB" or "Hz"
@@ -39,7 +39,7 @@ const init_phones = ["Chu Mod","Hibikist Target"],                      // Optio
 // Specify which targets to display
 const targets = [
     { type:"Neutral",    files:["Diffuse Field","Etymotic","Free Field","Innerfidelity ID","IEF Comp"] },
-    { type:"Reviewer",   files:["Antdroid","Bad Guy","Banbeucmas","Crinacle","Precogvision","Super Review","Hibikist"] },
+    { type:"Reviewer",   files:["Antdroid","Bad Guy","Banbeucmas","Crinacle","Precogvision","Super Review","Hibikist","Hibikist 2022"] },
     { type:"Preference", files:["Harman IE 2016","Harman IE 2017 v1","Harman IE 2017 v2","Harman IE 2019 v2","Rtings","Sonarworks"] }
 ];
 
