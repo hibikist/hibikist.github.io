@@ -6,6 +6,7 @@
       , {"name":"KXXS","file":"KXXS"}
       , {"name":["Chu"],"file":["Chu","Chu S2","Chu S3","Chu Mod"],"suffix":["(Sample 1)","(Sample 2)","(Sample 3)","(Sample 1, Carrot Audio Technical Mod)"]}
       , {"name":["Variations"],"file":["Vari","Vari F","Vari S2"],"suffix":["(Sample 1)","(Sample 1) (Foam Tips)","(Sample 2) (Foam Tips)"]}
+      , {"name":"Sparks","file":"Sparks"}
     ]
   },
   {
