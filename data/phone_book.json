@@ -71,6 +71,7 @@
     "name": "SeeAudio",
     "phones": [
         {"name":"Yume: Midnight","file":"Midnight"}
+      , {"name":"Yume II","file":"Yume2"}
     ]
   },
   {
