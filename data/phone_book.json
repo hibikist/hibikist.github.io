@@ -133,7 +133,7 @@
   {  
     "name": "Final Audio",
     "phones": [
-       {"name":"MAKE 4","file":"MAKE4"}
+       {"name":"MAKE 4","file":["MAKE4","MAKE4 V2"],"suffix":["(Tuning 1)","(Tuning 2)"}
     ]
   }
 ]
