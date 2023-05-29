@@ -135,5 +135,11 @@
     "phones": [
        {"name":"MAKE 4","file":["MAKE4","MAKE4 V2"],"suffix":["(Tuning 1)","(Tuning 2)"]}
     ]
+  },
+  {  
+    "name": "JVC",
+    "phones": [
+       {"name":"x Drop HA-FDX1","file":["FDX1W","FDX1G","FDX1B"],"suffix":["(White Filter)","(Green Filter)","(Blue Filter)"]}
+    ]
   }
 ]
